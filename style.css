@@ -62,3 +62,11 @@ textarea{
     z-index: 10;
     background-color: #ea8;
 }
+#cbtn {
+	float: right;
+	color: #800;
+	background-color: #ea8;
+	height: 20px;
+	padding:2px;
+	border-style: none;
+}
