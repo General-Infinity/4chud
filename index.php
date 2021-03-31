@@ -8,11 +8,16 @@
 <p>yeah its very stupid</p>
 <a href="javascript:posting();"><p>Post message</p></a>
 <form id="posts" action="post.php" enctype="multipart/form-data" target="upload_target">
-<div id="mydiv">
+<div style="display: none;" id="mydiv">
     <div id="mydivheader">Post<img alt="X" style="float: right; cursor: pointer;" src="cross.png" id="cbtn" onclick="document.getElementById('mydiv').style.display='none';" title="Close Window"></div>
     <input id="name" placeholder="Name" size="41" name="name"><br>
     <input id="options" placeholder="Options" size="41" name="options"><br>
     <textarea id="message"  placeholder="Text goes here..." rows="10" cols="40" name="message"></textarea><br>
+    <select style="float: left;" name="flag">
+        <option value="gl">Geographical Location</option>
+        <option value="fk">Forkiestan</option>
+        <option value="soy">Soyim</option>
+    </select><br>
     <input style="float: left;" type="file" name="image" id="image">
     <input id="submis" style="float: right;"type="submit" value="submit"/>
 </div>
