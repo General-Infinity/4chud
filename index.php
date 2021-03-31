@@ -7,26 +7,31 @@
 <h1>4chud</h1>
 <p>yeah its very stupid</p>
 <a href="javascript:posting();"><p>Post message</p></a>
-<form id="posts" action="post.php">
+<form id="posts" action="post.php" enctype="multipart/form-data" target="upload_target">
 <div id="mydiv">
-    <div id="mydivheader">Post<img alt="X"  src="cross.png" id="cbtn" onclick="document.getElementById('mydiv').style.display='none';" title="Close Window"></div>
+    <div id="mydivheader">Post<img alt="X" style="float: right; cursor: pointer;" src="cross.png" id="cbtn" onclick="document.getElementById('mydiv').style.display='none';" title="Close Window"></div>
     <input id="name" placeholder="Name" size="41" name="name"><br>
     <input id="options" placeholder="Options" size="41" name="options"><br>
     <textarea id="message"  placeholder="Text goes here..." rows="10" cols="40" name="message"></textarea><br>
-    <input style="float: left;" type="file" id="myFile" name="file">
+    <input style="float: left;" type="file" name="image" id="image">
     <input id="submis" style="float: right;"type="submit" value="submit"/>
 </div>
 </form>
+<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>
 <script>
-    document.getElementById("mydiv").style.display="none";
+    //document.getElementById("mydiv").style.display="none";
     $(function() {
         $("form").on("submit", function(e) {
-            e.preventDefault();
-            var formdata = $(this).serialize();
+            var form = document.getElementById('posts');
+            var fd = new FormData(form);
+            //var fd = $(this).serialize();
             $.ajax({
-                url: 'post.php',
-                type: 'POST',
-                data: formdata,
+                url: "post.php",
+                type: "POST",
+                data:  new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
                 success: function(data) {
                     $("#message").hide();
                     alert(data);

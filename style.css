@@ -46,6 +46,7 @@ textarea{
     font-weight:800;
 }
 #mydiv {
+    display: none;
     position: absolute;
     z-index: 9;
     background-color: #f1f1f1;
