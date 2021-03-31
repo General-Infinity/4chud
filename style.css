@@ -65,8 +65,6 @@ textarea{
 #cbtn {
 	float: right;
 	color: #800;
-	background-color: #ea8;
-	height: 20px;
-	padding:2px;
 	border-style: none;
+    cursor: pointer;
 }

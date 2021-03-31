@@ -9,7 +9,7 @@
 <a href="javascript:posting();"><p>Post message</p></a>
 <form id="posts" action="post.php">
 <div id="mydiv">
-    <div id="mydivheader">Post<button id="cbtn" onclick="document.getElementById('mydiv').style.display='none';">X</button></div>
+    <div id="mydivheader">Post<img alt="X"  src="cross.png" id="cbtn" onclick="document.getElementById('mydiv').style.display='none';" title="Close Window"></div>
     <input id="name" placeholder="Name" size="41" name="name"><br>
     <input id="options" placeholder="Options" size="41" name="options"><br>
     <textarea id="message"  placeholder="Text goes here..." rows="10" cols="40" name="message"></textarea><br>

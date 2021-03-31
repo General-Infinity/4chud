@@ -8,7 +8,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 $postText = htmlspecialchars($_POST["message"]);
 $postTemplate = file_get_contents("template.html");
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "ip-api.com/json/$ip");
+curl_setopt($ch, CURLOPT_URL, "ip-api.com/json"); ///$ip
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $info = curl_exec($ch);
 curl_close($ch);
@@ -16,6 +16,7 @@ $jsonip = json_decode($info);
 $cc = $jsonip->{"countryCode"};
 $cn = $jsonip->{"country"};
 $cc .= ".gif";
+$cc = strtolower($cc);
 if(!$postName){
     $postName = "Anonymous";
 }
