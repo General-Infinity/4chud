@@ -2,6 +2,7 @@
 <html>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <link rel="stylesheet" href="style.css">
 <body>
 <h1>4chud</h1>
@@ -17,6 +18,12 @@
         <option value="gl">Geographical Location</option>
         <option value="fk">Forkiestan</option>
         <option value="soy">Soyim</option>
+        <option value="vb">Vaporwave Bhutan</option>
+        <option value="yg">Yugoslavia</option>
+        <option value="os">Outer Space</option>
+        <option value="moon">Moon</option>
+        <option value="ce">Ceres</option>
+        <option value="po">Pluto</option>
     </select><br>
     <input style="float: left;" type="file" name="image" id="image">
     <input id="submis" style="float: right;"type="submit" value="submit"/>

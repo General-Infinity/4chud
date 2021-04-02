@@ -1,8 +1,5 @@
 <?php
 $postName = htmlspecialchars($_POST["name"]);
-if(!$postText){
-    exit("You forgot to input text!");
-}
 $postFlag = htmlspecialchars($_POST["flag"]);
 $postNum = file_get_contents("counter.txt");
 $postOptions = htmlspecialchars($_POST["options"]);
@@ -37,6 +34,9 @@ if(isset($_FILES['image'])){
 }
 $ip = $_SERVER['REMOTE_ADDR'];
 $postText = htmlspecialchars($_POST["message"]);
+if(!$postText){
+    exit("You forgot to input text!");
+}
 $postTemplate = file_get_contents("template.html");
 if($postFlag=="fk") {
     $cc = "fs.gif";
@@ -44,6 +44,24 @@ if($postFlag=="fk") {
 }elseif($postFlag=="soy"){
     $cc = "soy.gif";
     $cn = "Soyim";
+}elseif($postFlag=="vb"){
+    $cc = "vb.gif";
+    $cn = "Vaporwave Bhutan";
+}elseif($postFlag=="yg"){
+    $cc = "yg.gif";
+    $cn = "Yugoslavia";
+}elseif($postFlag=="moon"){
+    $cc = "moon.gif";
+    $cn = "The Moon";
+}elseif($postFlag=="os"){
+    $cc = "os.gif";
+    $cn = "Outer Space";
+}elseif($postFlag=="ce"){
+    $cc = "ce.gif";
+    $cn = "Ceres";
+}elseif($postFlag=="po"){
+    $cc = "po.gif";
+    $cn = "Pluto";
 }else{
     if ($ip != "::1") {
         $ch = curl_init();
@@ -64,9 +82,6 @@ if($postFlag=="fk") {
 if(!$postName){
     $postName = "Anonymous";
 }
-if(preg_match("/&gt;./", $postText) == 1){
-    $postHTML = str_replace("style=''","style='color: green;'", $postHTML);
-}
 file_put_contents("counter.txt", $postNum+1);
 $postHTML = str_replace("<_POSTNAME_>",$postName, $postTemplate);
 $postHTML = str_replace("<_POSTTEXT_>",$postText, $postHTML);
@@ -78,6 +93,10 @@ if ($fu==true){
     $st = '<br><img width="100px" height="100px" style="float: left;" src="images/thingtochange"><br><br><br><br>';
     $st = str_replace("thingtochange", $wow, $st);
     $postHTML = str_replace("<!--POSTIMAGE-->",$st, $postHTML);
+}
+if(preg_match("/&gt;.*/", $postText, $matches) == 1){
+    //print_r($matches);
+    $postHTML = str_replace($matches[0],"<p style='color: green;'>$matches[0]</p>", $postHTML);
 }
 file_put_contents("messages.html", $postHTML . file_get_contents("messages.html"));
 echo("Message sent!");
