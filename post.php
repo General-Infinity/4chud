@@ -38,31 +38,49 @@ if(!$postText){
     exit("You forgot to input text!");
 }
 $postTemplate = file_get_contents("template.html");
-if($postFlag=="fk") {
-    $cc = "fs.gif";
-    $cn = "Forkiestani";
-}elseif($postFlag=="soy"){
-    $cc = "soy.gif";
-    $cn = "Soyim";
-}elseif($postFlag=="vb"){
-    $cc = "vb.gif";
-    $cn = "Vaporwave Bhutan";
-}elseif($postFlag=="yg"){
-    $cc = "yg.gif";
-    $cn = "Yugoslavia";
-}elseif($postFlag=="moon"){
-    $cc = "moon.gif";
-    $cn = "The Moon";
-}elseif($postFlag=="os"){
-    $cc = "os.gif";
-    $cn = "Outer Space";
-}elseif($postFlag=="ce"){
-    $cc = "ce.gif";
-    $cn = "Ceres";
-}elseif($postFlag=="po"){
-    $cc = "po.gif";
-    $cn = "Pluto";
-}else{
+switch($postFlag){
+    case("fk"):
+        $cc = "fs.gif";
+        $cn = "Forkiestani";
+        $memeflag=true;
+        break;
+    case("soy"):
+        $cc = "soy.gif";
+        $cn = "Soyim";
+        $memeflag=true;
+        break;
+    case("vb"):
+        $cc = "vb.gif";
+        $cn = "Vaporwave Bhutan";
+        $memeflag=true;
+        break;
+    case("yg"):
+        $cc = "yg.gif";
+        $cn = "Yugoslavia";
+        $memeflag=true;
+        break;
+    case("moon"):
+        $cc = "moon.gif";
+        $cn = "The Moon";
+        $memeflag=true;
+        break;
+    case("os"):
+        $cc = "os.gif";
+        $cn = "Outer Space";
+        $memeflag=true;
+        break;
+    case("ce"):
+        $cc = "ce.gif";
+        $cn = "Ceres";
+        $memeflag=true;
+        break;
+    case("po"):
+        $cc = "po.gif";
+        $cn = "Pluto";
+        $memeflag=true;
+        break;
+}
+if(!$memeflag){
     if ($ip != "::1") {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "ip-api.com/json/$ip");
