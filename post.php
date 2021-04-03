@@ -1,4 +1,5 @@
 <?php
+$memeflag=false;
 $postName = htmlspecialchars($_POST["name"]);
 $postFlag = htmlspecialchars($_POST["flag"]);
 $postNum = file_get_contents("counter.txt");
