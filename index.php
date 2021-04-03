@@ -24,6 +24,7 @@
         <option value="moon">Moon</option>
         <option value="ce">Ceres</option>
         <option value="po">Pluto</option>
+        <option value="po">Jew</option>
     </select><br>
     <input style="float: left;" type="file" name="image" id="image">
     <input id="submis" style="float: right;"type="submit" value="submit"/>
