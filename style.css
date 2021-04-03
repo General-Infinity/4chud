@@ -17,10 +17,12 @@ body{
     font-weight: 700;
 }
 .reply{
-    margin:8px;
-    padding:5px;
-    background:#f0e0d6;
+    background-color: #f0e0d6;
     border: 1px solid #d9bfb7;
+    border-left: none;
+    border-top: none;
+    margin:8px;
+    padding: 2px;
 }
 #postBox{
     margin:8px;
