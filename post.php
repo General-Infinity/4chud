@@ -64,7 +64,9 @@ if (file_exists($ast."gif") && file_exists($ast."txt")){
 }
 
 if(!$postName) $postName = "Anonymous";
-
+if(preg_match("/#.*/", $postName, $nm)){
+    $postName= str_replace($nm[0], " !" . substr(base64_encode($nm[0]), -6), $postName); 
+}
 file_put_contents("counter.txt", $postNum+1);
 $postHTML = str_replace("<_POSTNAME_>",$postName, $postTemplate);
 $postHTML = str_replace("<_POSTTEXT_>",$postText, $postHTML);
