@@ -30,6 +30,7 @@
         </optgroup>
         <option value="cb">Combine</option>
         <option value="jew">Jew</option>
+        <option value="uy">United Lands of Yelloweria</option>
     </select><br>
     <input style="float: left;" type="file" name="image" id="image">
     <input id="submis" style="float: right;"type="submit" value="submit"/>
