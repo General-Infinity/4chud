@@ -1,4 +1,6 @@
 <?php
+require 'lib/geoip2.phar';
+use GeoIp2\Database\Reader;
 $memeflag=false;
 $dst="flags";
 $postText = htmlspecialchars($_POST["message"]);
@@ -27,7 +29,7 @@ if(isset($_FILES['image'])){
     if($file_size > 2097152){
         $error="File size must not be above 2MB \n";
     }
-
+    
     if(empty($error)==true && $file_ext != ""){
         $fu = true;
         file_put_contents("counter.txt", $postNum+1);
@@ -47,14 +49,10 @@ if (file_exists($ast."gif") && file_exists($ast."txt")){
     $cn = file_get_contents($ast."txt");
 }else{
     if ($ip != "::1") {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "ip-api.com/json/$ip");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $info = curl_exec($ch);
-        curl_close($ch);
-        $jsonip = json_decode($info);
-        $cc = $jsonip->{"countryCode"};
-        $cn = $jsonip->{"country"};
+        $reader = new Reader('lib/GeoLite2-Country.mmdb');
+        $record = $reader->country($ip);
+        $cc = $record->country->isoCode;
+        $cn = $record->country->name;
         $dst = "flags";
         $cc .= ".gif";
         $cc = strtolower($cc);
@@ -63,50 +61,6 @@ if (file_exists($ast."gif") && file_exists($ast."txt")){
         $cn = "Localhost";
     }
 }
-/*
-switch($postFlag){
-    case("fk"):
-        $cc = "fs.gif";
-        $cn = "Forkiestani";
-        $memeflag=true;
-        break;
-    case("soy"):
-        $cc = "soy.gif";
-        $cn = "Soyim";
-        $memeflag=true;
-        break;
-    case("vb"):
-        $cc = "vb.gif";
-        $cn = "Vaporwave Bhutan";
-        $memeflag=true;
-        break;
-    case("yg"):
-        $cc = "yg.gif";
-        $cn = "Yugoslavia";
-        $memeflag=true;
-        break;
-    case("moon"):
-        $cc = "moon.gif";
-        $cn = "The Moon";
-        $memeflag=true;
-        break;
-    case("os"):
-        $cc = "os.gif";
-        $cn = "Outer Space";
-        $memeflag=true;
-        break;
-    case("ce"):
-        $cc = "ce.gif";
-        $cn = "Ceres";
-        $memeflag=true;
-        break;
-    case("po"):
-        $cc = "po.gif";
-        $cn = "Pluto";
-        $memeflag=true;
-        break;
-}
-*/
 if(!$postName) $postName = "Anonymous";
 
 file_put_contents("counter.txt", $postNum+1);
@@ -121,9 +75,12 @@ if ($fu==true){
     $st = str_replace("thingtochange", $wow, $st);
     $postHTML = str_replace("<!--POSTIMAGE-->",$st, $postHTML);
 }
-if(preg_match("/&gt;.*/", $postText, $matches) == 1){
-    //print_r($matches);
-    $postHTML = str_replace($matches[0],"<p style='color: green;'>$matches[0]</p>", $postHTML);
+if(preg_match("/&gt;.*\n/", $postText) == 1){
+    preg_match_all("/&gt;.*\n/", $postText, $matches);
+    print_r($matches);
+    $allofgreen=array_slice($matches, 0, 1);
+    print($allofgreen);
+    $postHTML = str_replace($allofgreen,"<p style='color: green;'>$allofgreen</p><br>", $postHTML);
 }
 file_put_contents("messages.html", $postHTML . file_get_contents("messages.html"));
 echo("Message sent!");

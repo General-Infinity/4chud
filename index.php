@@ -5,7 +5,8 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <link rel="stylesheet" href="style.css">
 <body>
-<h1>4chud</h1>
+    [<a href="/" title="Home">/</a>]
+<h1 class="boardtitle">/ - Home</h1>
 <p>yeah its very stupid</p>
 <a href="javascript:posting();"><p>Post message</p></a>
 <form id="posts" action="post.php" enctype="multipart/form-data" target="upload_target">
@@ -16,15 +17,18 @@
     <textarea id="message"  placeholder="Text goes here..." rows="10" cols="40" name="message"></textarea><br>
     <select style="float: left;" name="flag">
         <option value="gl">Geographical Location</option>
+        
         <option value="fk">Forkiestan</option>
         <option value="soy">Soyim</option>
         <option value="vb">Vaporwave Bhutan</option>
         <option value="yg">Yugoslavia</option>
+        <optgroup label="Spaceflags">
         <option value="os">Outer Space</option>
         <option value="moon">Moon</option>
         <option value="ce">Ceres</option>
         <option value="po">Pluto</option>
-        <option value="po">Jew</option>
+        </optgroup>
+        <option value="jew">Jew</option>
     </select><br>
     <input style="float: left;" type="file" name="image" id="image">
     <input id="submis" style="float: right;"type="submit" value="submit"/>

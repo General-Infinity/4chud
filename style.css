@@ -24,6 +24,15 @@ body{
     margin:8px;
     padding: 2px;
 }
+#boardtitle{
+    font-family: Tahoma,sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin-top: 0;
+    text-align: center;
+    color: maroon;
+}
 #postBox{
     margin:8px;
     background:#f0e0d6;
