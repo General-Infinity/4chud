@@ -28,6 +28,7 @@
         <option value="ce">Ceres</option>
         <option value="po">Pluto</option>
         </optgroup>
+        <option value="cb">Combine</option>
         <option value="jew">Jew</option>
     </select><br>
     <input style="float: left;" type="file" name="image" id="image">
