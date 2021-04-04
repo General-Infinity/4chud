@@ -1,6 +1,6 @@
 <?php
-require 'lib/geoip2.phar';
-use GeoIp2\Database\Reader;
+//require 'lib/geoip2.phar';
+//use GeoIp2\Database\Reader;
 $memeflag=false;
 $dst="flags";
 $postText = htmlspecialchars($_POST["message"]);
@@ -43,6 +43,7 @@ if(isset($_FILES['image'])){
 $ip = $_SERVER['REMOTE_ADDR'];
 $postTemplate = file_get_contents("template.html");
 $ast="memeflags/".$postFlag.".";
+/*
 if (file_exists($ast."gif") && file_exists($ast."txt")){
     $dst = "memeflags";
     $cc = $postFlag.".gif";
@@ -61,6 +62,7 @@ if (file_exists($ast."gif") && file_exists($ast."txt")){
         $cn = "Localhost";
     }
 }
+*/
 if(!$postName) $postName = "Anonymous";
 
 file_put_contents("counter.txt", $postNum+1);
@@ -77,10 +79,10 @@ if ($fu==true){
 }
 if(preg_match("/&gt;.*\n/", $postText) == 1){
     preg_match_all("/&gt;.*\n/", $postText, $matches);
-    print_r($matches);
-    $allofgreen=array_slice($matches, 0, 1);
-    print($allofgreen);
-    $postHTML = str_replace($allofgreen,"<p style='color: green;'>$allofgreen</p><br>", $postHTML);
+    for($i=0; $i<=count($matches); $i++){
+        $allofgreen=$matches[0][$i];
+        $postHTML = str_replace($allofgreen,"<p style='color: green;'>$allofgreen</p>", $postHTML);
+    }
 }
 file_put_contents("messages.html", $postHTML . file_get_contents("messages.html"));
 echo("Message sent!");
